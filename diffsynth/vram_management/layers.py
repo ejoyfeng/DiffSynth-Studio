@@ -1,5 +1,6 @@
 import torch, copy
 from ..models.utils import init_weights_on_device
+from typing import Union
 
 
 def cast_to(weight, dtype, device):
@@ -116,7 +117,7 @@ class AutoWrappedLinear(torch.nn.Linear, AutoTorchModule):
         self,
         input: torch.Tensor,
         weight: torch.Tensor,
-        bias: torch.Tensor | None = None,
+        bias: Union[torch.Tensor, None] = None,
     ) -> torch.Tensor:
         device = input.device
         origin_dtype = input.dtype
